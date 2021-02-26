@@ -31,7 +31,8 @@ document.getElementById("deck").addEventListener("click", function () {
             pass++;
             player1Card = cards2D.shift(); //Shifts the array and gets rid of the last card in the deck
             player1Cardtxt = player1Card;
-            document.getElementById("cardhand").innerHTML = ("Player 1 Card " + player1Card + "   Player 2 Card ___");
+            document.getElementById("cardhand1").innerHTML = ("Player 1 Card " + player1Card);
+            canvasUpdate()
             console.log("case1");
             break;
 
@@ -39,16 +40,23 @@ document.getElementById("deck").addEventListener("click", function () {
             pass++;
             player2Card = cards2D.shift(); //Shifts the array and gets rid of the last card in the deck
             player2Cardtxt = player2Card;
-            document.getElementById("cardhand").innerHTML = ("Player 1 Card " + player1Card + "   Player 2 Card " + player2Card);
+            document.getElementById("cardhand2").innerHTML = ("Player 2 Card " + player2Card);
+            canvasUpdate()
             console.log("case2");
+
             break;
 
         case 3: //Rule Application
             RuleApply(); //Apply the rules
             player1Cardtxt = "";
             player2Cardtxt = "";
-            document.getElementById("cardhand").innerHTML = ("Player 1 Card ___    Player 2 Card ___");
-            document.getElementById("score").innerHTML = ("Player1 Score " + player1Cards.length + "   Player2 Score " + player2Cards.length)
+            document.getElementById("cardhand1").innerHTML = ("Player 1 Card ___");
+            document.getElementById("cardhand2").innerHTML = ("Player 2 Card ___");
+            document.getElementById("score1").innerHTML = ("Player 1 Score:  " + player1Cards.length);
+            document.getElementById("score2").innerHTML = ("Player 2 Score:  " + player2Cards.length)
+            player1Card = "";
+            player2Card = "";
+            canvasUpdate();
             if (cards2D.length > 0) { //repeats the game if no cards left
                 pass = 1 //Sends progression backwards
             }else{
@@ -61,9 +69,9 @@ document.getElementById("deck").addEventListener("click", function () {
             pass++;
             console.log("\n\n _-_-_-_ \n" + player1Cards.length + " <-> " + player2Cards.length)
             if (player1Cards.length > player2Cards.length) {
-                document.getElementById("results").innerHTML = ("Player 1 Wins with the cards " + player1Cards);
+                document.getElementById("results").innerHTML = ("Player 1 Wins with the cards " + "<br>" + String(player1Cards.slice(0,player1Cards.length/2)) + "<br>" + String(player1Cards.slice(player1Cards.length/2 + 1, player1Cards.length)));
             } else {
-                document.getElementById("results").innerHTML = ("Player 2 Wins with the cards  " + player2Cards);
+                document.getElementById("results").innerHTML = ("Player 2 Wins with the cards  " + "<br>" + String(player2Cards.slice(0,player2Cards.length/2)) + "<br>" + String(player2Cards.slice(player2Cards.length/2 + 1, player2Cards.length)));
             }
             console.log("case4");
             break;
@@ -92,7 +100,7 @@ if (pass === 4){
 }
 
 
-//Shuffle cards
+//Functions
 function ShuffleDeck() {
     blackCards = blackCards.sort(() => Math.random() - 0.5);
     redCards = redCards.sort(() => Math.random() - 0.5);
@@ -149,7 +157,6 @@ function RuleApply() {
     }
 }
 
-//Functions
 function player1Win() {
     player1Cards.push(player1Card)
     player1Cards.push(player2Card)
@@ -166,4 +173,50 @@ function neutral() {
         console.log("_ _ _ player2 wins");
         player2Win();
     }
+}
+
+function canvasUpdate(){
+
+
+    var context1 = document.getElementById("canvascard1").getContext("2d");
+    var context2 = document.getElementById("canvascard2").getContext("2d");
+
+
+    switch (player1Card.substring(0,1)){
+        case "":
+            context1.clearRect(0,0,document.getElementById("canvascard1").width,document.getElementById("canvascard1").height);
+            break;
+        case "y":
+            context1.fillStyle="yellow";
+            context1.fillRect(0,0,document.getElementById("canvascard1").width,document.getElementById("canvascard1").height);
+            break;
+        case "b":
+            context1.fillStyle="black";
+            context1.fillRect(0,0,document.getElementById("canvascard1").width,document.getElementById("canvascard1").height);
+            break;
+        case "r":
+            context1.fillStyle="red";
+            context1.fillRect(0,0,document.getElementById("canvascard1").width,document.getElementById("canvascard1").height);
+            break;
+    }
+
+    switch (player2Card.substring(0,1)){
+        case "":
+            context2.clearRect(0,0,document.getElementById("canvascard2").width,document.getElementById("canvascard2").height);
+            break;
+        case "y":
+            context2.fillStyle="yellow";
+            context2.fillRect(0,0,document.getElementById("canvascard2").width,document.getElementById("canvascard2").height);
+            break;
+        case "b":
+            context2.fillStyle="black";
+            context2.fillRect(0,0,document.getElementById("canvascard2").width,document.getElementById("canvascard2").height);
+            break;
+        case "r":
+            context2.fillStyle="red";
+            context2.fillRect(0,0,document.getElementById("canvascard2").width,document.getElementById("canvascard2").height);
+            break;
+    }
+
+
 }
