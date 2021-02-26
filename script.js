@@ -85,8 +85,10 @@ if (pass === 4){
 
     if (player1Cards.length > player2Cards.length) {
         console.log("Player 1 Wins");
+        console.log("With the cards " + player1Cards);
     } else {
         console.log("Player 2 Wins");
+        console.log("With the cards " + player2Cards);
     }
     console.log("case4");
 }
@@ -104,7 +106,6 @@ function ShuffleDeck() {
     cards2D = cards2D.flat();
     cards2D = cards2D.sort(() => Math.random() - 0.5); //Shuffles again for randomness
 }
-
 function RuleApply() {
     switch (player1Card.substring(0, 1)) {
         case "r":
@@ -159,7 +160,6 @@ function player2Win() {
     player2Cards.push(player1Card)
     player2Cards.push(player2Card)
 }
-
 function neutral() {
     if (player1Card.substring(1, 2) > player2Card.substring(1, 2)) {
         console.log("_ _ _ player1 wins");
