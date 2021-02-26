@@ -62,8 +62,10 @@ document.getElementById("deck").addEventListener("click", function () {
             console.log("\n\n _-_-_-_ \n" + player1Cards.length + " <-> " + player2Cards.length)
             if (player1Cards.length > player2Cards.length) {
                 console.log("Player 1 Wins");
+                console.log("With the cards " + player1Cards);
             } else {
                 console.log("Player 2 Wins");
+                console.log("With the cards " + player2Cards);
             }
             console.log("case4");
             break;
