@@ -61,11 +61,9 @@ document.getElementById("deck").addEventListener("click", function () {
             pass++;
             console.log("\n\n _-_-_-_ \n" + player1Cards.length + " <-> " + player2Cards.length)
             if (player1Cards.length > player2Cards.length) {
-                console.log("Player 1 Wins");
-                console.log("With the cards " + player1Cards);
+                document.getElementById("results").innerHTML = ("Player 1 Wins with the cards " + player1Cards);
             } else {
-                console.log("Player 2 Wins");
-                console.log("With the cards " + player2Cards);
+                document.getElementById("results").innerHTML = ("Player 2 Wins with the cards  " + player2Cards);
             }
             console.log("case4");
             break;
@@ -87,10 +85,8 @@ if (pass === 4){
 
     if (player1Cards.length > player2Cards.length) {
         console.log("Player 1 Wins");
-        console.log("With the cards " + player1Cards);
     } else {
         console.log("Player 2 Wins");
-        console.log("With the cards " + player2Cards);
     }
     console.log("case4");
 }
