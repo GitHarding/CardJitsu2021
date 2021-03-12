@@ -1,4 +1,21 @@
 //Login
+let UI = document.getElementById("container");
+let Login = document.getElementById("submit");
+let Truth = false; //Used to check if inspect is used to enable the button
+
+document.getElementById("submit").addEventListener("click", function () {
+    let username = document.getElementById("un").value; //Gets the values from the username input
+    let password = document.getElementById("pw").value; //Gets the values from the password input
+
+    if(username === "safe" && password === "sound"){ //Hard coded values for the username and password
+        Truth = true;
+        alert("Logged in");
+        UI.style.pointerEvents = "auto"; //Enables the card game div
+        Login.pointerEvents = "none"; //Disables the login div
+    }else{
+        alert("Invalid Login");
+    }
+});
 
 //Variables
 
@@ -21,69 +38,75 @@ let player1Cardtxt = "";
 let player2Cardtxt = "";
 
 document.getElementById("deck").addEventListener("click", function () {
-    switch (pass) {
-        case 0:
-            ShuffleDeck();
-            pass++;
-            console.log("case0");
-            break;
-        case 1: //Player 1 action
-            pass++;
-            player1Card = cards2D.shift(); //Shifts the array and gets rid of the last card in the deck
-            player1Cardtxt = player1Card;
-            document.getElementById("cardhand1").innerHTML = ("Player 1 Card " + player1Card);
-            canvasUpdate()
-            console.log("case1");
-            break;
+    if(Truth == false){ //Activates anti inspect "security"
+        window.alert("HEY NO USING INSPECT"); //Message to the user
+        window.location.replace("https://youtu.be/dQw4w9WgXcQ"); //Redirects them
+    }else {
+        console.log(Truth);
+        switch (pass) {
+            case 0:
+                ShuffleDeck();
+                pass++;
+                console.log("case0");
+                break;
+            case 1: //Player 1 action
+                pass++;
+                player1Card = cards2D.shift(); //Shifts the array and gets rid of the last card in the deck
+                player1Cardtxt = player1Card;
+                document.getElementById("cardhand1").innerHTML = ("Player 1 Card " + player1Card);
+                canvasUpdate()
+                console.log("case1");
+                break;
 
-        case 2: //Player 2 action
-            pass++;
-            player2Card = cards2D.shift(); //Shifts the array and gets rid of the last card in the deck
-            player2Cardtxt = player2Card;
-            document.getElementById("cardhand2").innerHTML = ("Player 2 Card " + player2Card);
-            canvasUpdate()
-            console.log("case2");
+            case 2: //Player 2 action
+                pass++;
+                player2Card = cards2D.shift(); //Shifts the array and gets rid of the last card in the deck
+                player2Cardtxt = player2Card;
+                document.getElementById("cardhand2").innerHTML = ("Player 2 Card " + player2Card);
+                canvasUpdate()
+                console.log("case2");
 
-            break;
+                break;
 
-        case 3: //Rule Application
-            RuleApply(); //Apply the rules
-            player1Cardtxt = "";
-            player2Cardtxt = "";
-            document.getElementById("cardhand1").innerHTML = ("Player 1 Card ___");
-            document.getElementById("cardhand2").innerHTML = ("Player 2 Card ___");
-            document.getElementById("score1").innerHTML = ("Player 1 Score:  " + player1Cards.length);
-            document.getElementById("score2").innerHTML = ("Player 2 Score:  " + player2Cards.length)
-            player1Card = "";
-            player2Card = "";
-            canvasUpdate();
-            if (cards2D.length > 0) { //repeats the game if no cards left
-                pass = 1 //Sends progression backwards
-            }else{
-                pass = 4 //Sends prgression forwards
-            }
-            console.log("case3");
-            break;
+            case 3: //Rule Application
+                RuleApply(); //Apply the rules
+                player1Cardtxt = "";
+                player2Cardtxt = "";
+                document.getElementById("cardhand1").innerHTML = ("Player 1 Card ___");
+                document.getElementById("cardhand2").innerHTML = ("Player 2 Card ___");
+                document.getElementById("score1").innerHTML = ("Player 1 Score:  " + player1Cards.length);
+                document.getElementById("score2").innerHTML = ("Player 2 Score:  " + player2Cards.length)
+                player1Card = "";
+                player2Card = "";
+                canvasUpdate();
+                if (cards2D.length > 0) { //repeats the game if no cards left
+                    pass = 1 //Sends progression backwards
+                } else {
+                    pass = 4 //Sends prgression forwards
+                }
+                console.log("case3");
+                break;
 
-        case 4:
-            pass++;
-            console.log("\n\n _-_-_-_ \n" + player1Cards.length + " <-> " + player2Cards.length)
-            if (player1Cards.length > player2Cards.length) {
-                document.getElementById("results").innerHTML = ("Player 1 Wins with the cards " + "<br>" + String(player1Cards.slice(0,player1Cards.length/2)) + "<br>" + String(player1Cards.slice(player1Cards.length/2 + 1, player1Cards.length)));
-            } else {
-                document.getElementById("results").innerHTML = ("Player 2 Wins with the cards  " + "<br>" + String(player2Cards.slice(0,player2Cards.length/2)) + "<br>" + String(player2Cards.slice(player2Cards.length/2 + 1, player2Cards.length)));
-            }
-            console.log("case4");
-            break;
+            case 4:
+                pass++;
+                console.log("\n\n _-_-_-_ \n" + player1Cards.length + " <-> " + player2Cards.length)
+                if (player1Cards.length > player2Cards.length) {
+                    document.getElementById("results").innerHTML = ("Player 1 Wins with the cards " + "<br>" + String(player1Cards.slice(0, player1Cards.length / 2)) + "<br>" + String(player1Cards.slice(player1Cards.length / 2 + 1, player1Cards.length)));
+                } else {
+                    document.getElementById("results").innerHTML = ("Player 2 Wins with the cards  " + "<br>" + String(player2Cards.slice(0, player2Cards.length / 2)) + "<br>" + String(player2Cards.slice(player2Cards.length / 2 + 1, player2Cards.length)));
+                }
+                console.log("case4");
+                break;
 
-        case 5:
-            if(confirm("do you want to replay?")){
-                alert("reloading the game");
-                location.reload();
-            }else{
-                alert("you can replay at any time by pressing the button");
-            }
-            break;
+            case 5:
+                if (confirm("do you want to replay?")) {
+                    alert("reloading the game");
+                    location.reload();
+                } else {
+                    alert("you can replay at any time by pressing the button");
+                }
+                break;
+        }
     }
 });
 

@@ -13,26 +13,35 @@
     <p>Card Game NEA Main page</p>
 </div>
 
+<div id="login">Login <br>
+    <br><Input placeholder="Username" id="un"><br>
+    <br><Input placeholder="Password" id="pw" input type="password"><br>
+    <br><button id="submit">Log In</button>
+    <br>
 
-<button id="deck">Deck</button> <br><br>
-
-
-<div id="Divbox">Player 1 Area
-    <p id="cardhand1">Player 1 Card ___</p>
-    <canvas id="canvascard1"></canvas>
 </div>
 
+<div id="container" style="pointer-events: none;">
 
-<div id="Divbox">Player 2 Area
-    <p id="cardhand2">Player 2 card ___</p>
-    <canvas id="canvascard2">test</canvas>
+    <div>Player 1 Area
+        <p id="cardhand1">Player 1 Card ___</p>
+        <canvas id="canvascard1"></canvas>
+    </div>
+
+    <div>
+        <br><button id="deck">Deck</button> <br><br>
+        Scores
+        <p id="score1">Player1 Score:  __</p>
+        <p id="score2">Player2 Score:  __</p>
+        <p id="results"></p>
+    </div>
+
+    <div>Player 2 Area
+        <p id="cardhand2">Player 2 card ___</p>
+        <canvas id="canvascard2">test</canvas>
+    </div>
 </div>
 
-<div id="Divbox">Scores
-    <p id="score1">Player1 Score:  __</p>
-    <p id="score2">Player2 Score:  __</p>
-    <p id="results"></p>
-</div>
 
 <div class="footer">
     <p>Samuel Harding</p>
