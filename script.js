@@ -7,9 +7,12 @@ document.getElementById("submit").addEventListener("click", function () {
     let username = document.getElementById("un").value; //Gets the values from the username input
     let password = document.getElementById("pw").value; //Gets the values from the password input
 
-    if(username === "safe" && password === "sound"){ //Hard coded values for the username and password
+    let username1 = document.getElementById("un1").value; //Gets the values from the username input
+    let password1 = document.getElementById("pw1").value; //Gets the values from the password input
+
+    if(username === "safe" && password === "sound" && username1 === "sensible" && password1 === "safe"){ //Hard coded values for the username and password
         Truth = true;
-        alert("Logged in");
+        alert("Logged in!");
         UI.style.pointerEvents = "auto"; //Enables the card game div
         Login.pointerEvents = "none"; //Disables the login div
     }else{

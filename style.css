@@ -25,7 +25,13 @@ canvas {
 }
 
 #login {
-    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+#login > div{
+    width: 40%;
     height:auto;
     padding:5px;
     margin:25px;
@@ -34,6 +40,11 @@ canvas {
     border-style: solid;
     border-color: #ff6600;
     background: #ffb787;
+}
+#submit{
+    width:90%;
+    height:75px;
+    border:1px solid #000000;
 }
 
 #container {
@@ -74,7 +85,6 @@ canvas {
     background: #ff0066;
     color: white;
 
-    position:fixed;
     left:10px;
     right:10px;
     bottom:10px;
